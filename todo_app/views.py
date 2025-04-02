@@ -39,8 +39,11 @@ class TodoListView(LoginRequiredMixin, ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        # queryset = Todo.objects.all()
-        queryset = Todo.objects.filter(user=self.request.user).order_by('-created_at')
+        if self.request.user.is_superuser:
+            queryset = Todo.objects.all().order_by('-created_at')
+        else:
+            queryset = Todo.objects.filter(user=self.request.user).order_by('-created_at')
+       
         search_query = self.request.GET.get('search', '')
         if search_query:
             queryset = queryset.filter(Q(title__icontains=search_query) | Q(description__icontains=search_query))
