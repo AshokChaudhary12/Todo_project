@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard - User Data {% endblock %}
+
+{% block content %}
+{% if messages %}
+<div class="alert alert-info">
+    <ul class="mb-0">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div class="card" style="margin-top: 45px;">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title">TODO</h3>
+        
+        <!-- Search and Filter Form -->
+        <form method="get" action="" class="d-flex align-items-center search-form">
+            <div class="search-container">
+                <input type="text" name="search" class="form-control" placeholder="Type your keywords here" value="{{ request.GET.search }}">
+                <button type="submit" class="btn search-btn">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            
+            <select name="filter" class="form-control" onchange="this.form.submit()">
+                <option value="all" {% if request.GET.filter == 'all' %}selected{% endif %}>All</option>
+                <option value="upcoming" {% if request.GET.filter == 'upcoming' %}selected{% endif %}>Upcoming</option>
+                <option value="completed" {% if request.GET.filter == 'completed' %}selected{% endif %}>Completed</option>
+                <option value="pending" {% if request.GET.filter == 'pending' %}selected{% endif %}>Pending</option>
+            </select>
+
+            <!-- Reset Button -->
+            <a href="{% url 'todo_list' %}" class="btn btn-secondary">
+                <i class="fas fa-redo"></i> Reset
+            </a>
+
+            <a href="{% url 'add_todo' %}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Add New
+            </a>
+        </form>
+    </div>
+
+    <div class="card-body">
+        <table id="userTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in todos %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>{{ i.start_date }}</td>
+                    <td>{{ i.end_date }}</td>
+                    <td><a href="{% url 'update_todo' i.pk %}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{% url 'delete_todo' i.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                    <td>
+                        {% if not i.completed %}
+                        <a href="{% url 'mark_completed' i.pk %}" class="btn btn-success btn-sm">Complete</a>
+                        {% else %}
+                        <span class="badge bg-success">Completed</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center">No data available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Custom Styles */
+    .search-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .search-container {
+        position: relative;
+        width: 250px;
+    }
+
+    .search-form input[type="text"] {
+        width: 100%;
+        /* border-radius: 20px; */
+        padding-left: 10px;
+    }
+
+    .search-btn {
+        position: absolute;
+        bottom: 0px; /* Position the icon at the bottom */
+        right: 0px; /* Adjust the right margin */
+        background-color: #773e3e80; /* Remove background color */
+        border: none; /* Remove border */
+        color: #007bff; /* Set the color of the icon */
+        font-size: 19px; /* Adjust size */
+    }
+
+    .search-form select {
+        border-radius: 6px;
+        width: 200px;
+    }
+
+    .search-form button,
+    .search-form a {
+        /* border-radius: 5px; */
+        padding: 5px 10px;
+        margin-left: 15px;
+    }
+
+    .search-form button {
+        /* background-color: #007bff; */
+        color: rgb(14, 6, 94);
+    }
+
+    .search-form a {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .logout-form {
+        display: inline-block;
+        margin-left: auto;
+    }
+
+    .logout-form button {
+        border-radius: 5px;
+        padding: 6px 12px;
+    }
+
+    /* Customizing the table and buttons */
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .btn-sm {
+        padding: 5px 10px;
+    }
+</style>
+
+{% endblock %}

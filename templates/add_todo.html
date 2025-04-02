@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %} Dashboard - User Data {% endblock %}
+
+{% block css %} 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}  
+
+<style>
+    .card {
+        border-top: 4px solid blue;
+        /* Blue top border */
+    }
+</style>
+
+
+<div class="container mt-5">
+    {% if messages %}
+        <div class="alert alert-info">
+            <ul class="mb-0">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <h1 class="text-center">Add Todo</h1>
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+                    {{ form.title|add_class:"form-control" }}
+                    {% if form.title.errors %}
+                    <div class="text-danger">
+                        {% for error in form.title.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                    {{ form.description|add_class:"form-control" }}
+                    {% if form.description.errors %}
+                    <div class="text-danger">
+                        {% for error in form.description.errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="start_date" class="form-label  fw-bold fs-5">Start Date</label>
+                        <input type="date" class="form-control" name="start_date" id="start_date" required
+                            style="width: 188.6px; height: 46.6px">
+                        {% if form.title.errors %}
+                        <div class="text-danger">
+                            {% for error in form.title.errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="end_date" class="form-label  fw-bold fs-5" style="margin-left: -395px;">End
+                            Date</label>
+                        <input type="date" class="form-control" name="end_date" id="end_date" required disabled
+                            style="width: 188.6px; height: 46.6px; margin-left: -395px;">
+                        {% if form.title.errors %}
+                        <div class="text-danger" style="margin-left: -395px;">
+                            {% for error in form.title.errors %}
+                            <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Save Todo</button>
+                    <a href="{% url 'todo_list' %}" class="btn btn-primary" style="margin-right: 10px;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+        {% block js %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let startDateInput = document.getElementById("start_date");
+            let endDateInput = document.getElementById("end_date");
+
+            startDateInput.addEventListener("change", function () {
+                if (this.value) {
+                    endDateInput.removeAttribute("disabled");
+                    endDateInput.setAttribute("min", this.value);
+                } else {
+                    endDateInput.setAttribute("disabled", "true");
+                    endDateInput.value = "";
+                }
+            });
+        });
+    </script>  
+        {% endblock %}
+{% endblock %}

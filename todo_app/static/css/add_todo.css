@@ -1,0 +1,126 @@
+    /* form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #ffffff;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #4a90e2;
+}
+
+.todo-form .field {
+    margin-bottom: 20px;
+}
+
+.todo-form label {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.todo-form input,
+.todo-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #0f0e0e;
+    font-size: 1rem;
+    color: #555;
+}
+
+.todo-form input[type="date"] {
+    padding: 10px;
+}
+
+.todo-form button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.todo-form button:hover {
+    background-color: #357ab7;
+}
+
+.errorlist {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.messages ul {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.messages li {
+    list-style-type: none;
+}
+
+<!-- <link rel="stylesheet" href="{% static 'css/add_todo.css' %}"> --> */

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Display error messages at the top of the page -->
+        <div class="row">
+            <div class="col-12">
+                {% if messages %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-container">
+            <h2>Sign in to start your session</h2>
+            <form method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}
+                
+                <!-- Email Field -->
+                <div class="input-group">
+                    <div class="col-sm-8">
+                        <div class="input-container">
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="text-danger error-msg">
+                                    {% for error in form.email.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <i class="fa fa-envelope icon"></i>
+                    </div>
+                  
+                </div>
+
+                <!-- Password Field -->
+                <div class="input-group mb-3">
+                    <div class="col-sm-8">
+                        <div class="input-container">
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                <div class="text-danger error-msg">
+                                    {% for error in form.password.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                </div>
+
+                <!-- Remember Me Checkbox -->
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn login-btn" style="background-color: #28a745;">Sign In</button>
+            </form>
+
+            <p class="or-text">- OR -</p>
+
+            <p>Don't have an account? <a href="{% url 'signup' %}">Register</a></p>
+        </div>
+    </div>
+</body>
+</html>

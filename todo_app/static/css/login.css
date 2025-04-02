@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background: white;
+    padding: 20px;
+    width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.input-group {
+    position: relative;
+    margin: 10px 0;
+}
+
+.input-group input {
+    width: 92%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 319px; /* Align icon to the left */
+    top: 38%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Error message styling */
+.text-danger {
+    color: red; /* Red color for error messages */
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left; /* Align error message to the left */
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.remember-me input {
+    margin-right: 5px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.sign-in-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.facebook-btn {
+    background-color: #3b5998;
+    color: white;
+}
+
+.google-btn {
+    background-color: #dd4b39;
+    color: white;
+}
+
+.btn i {
+    margin-right: 5px;
+}
+
+.or-text {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+p a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+}
