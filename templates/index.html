@@ -53,9 +53,9 @@
                     <th>Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
                     <th>Actions</th>
+                    <th>Status</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -66,8 +66,10 @@
                     <td>{{ i.description }}</td>
                     <td>{{ i.start_date }}</td>
                     <td>{{ i.end_date }}</td>
-                    <td><a href="{% url 'update_todo' i.pk %}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
-                    <td><a href="{% url 'delete_todo' i.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                    <td>
+                        <a href="{% url 'update_todo' i.pk %}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'delete_todo' i.pk %}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                    </td>
                     <td>
                         {% if not i.completed %}
                         <a href="{% url 'mark_completed' i.pk %}" class="btn btn-success btn-sm">Complete</a>
