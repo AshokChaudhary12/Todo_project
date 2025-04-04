@@ -13,7 +13,6 @@ class Todo(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     completed = models.BooleanField(default=False)
-    # created_at = models.DateTimeField(default=datetime.datetime.now)  
     created_at = models.DateTimeField(default=timezone.now) 
         
     def __str__(self):

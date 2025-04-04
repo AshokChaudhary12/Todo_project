@@ -19,6 +19,24 @@ class TodoForm(forms.ModelForm):
             'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
 
+        error_messages = {
+            'title': {
+                'required': 'Title is required. Please provide a title for the task.',
+                'max_length': 'Title is too long. It must be under 100 characters.',
+            },
+            'description': {
+                'required': 'Description is required. Please provide a description.',
+            },
+            'start_date': {
+                'required': 'Start date is required. Please select a start date.',
+                'invalid': 'Enter a valid date for the start date.',
+            },
+            'end_date': {
+                'required': 'End date is required. Please select an end date.',
+                'invalid': 'Enter a valid date for the end date.',
+                'invalid_date': 'End date cannot be earlier than start date.',
+            },
+        }
 
     def clean(self):
         cleaned_data = super().clean()

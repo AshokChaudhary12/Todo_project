@@ -61,11 +61,11 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                         <li class="nav-item">
-                            <a href="{% url 'dashboard' %}" class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}">
+                            <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.view_name == 'dashboard' %}active{% endif %}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
-                            <a href="{% url 'todo_list' %}" class="nav-link {% if request.path == '/todo_list/' %}active{% endif %}">
+                            <a href="{% url 'todo_list' %}" class="nav-link {% if request.resolver_match.view_name == 'todo_list' %}active{% endif %}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>TODO</p>
                             </a>
